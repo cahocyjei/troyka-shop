@@ -6,12 +6,15 @@ nav {
     padding: 0 24px;
     border-bottom: 1px solid var(--very-light-pink);
   }
+
   .menu {
     display: none;
   }
-  .logo {
-    width: 100px;
+  .navbar-left img{
+   display: flex;
   }
+ 
+ 
   .navbar-left ul,
   .navbar-right ul {
     list-style: none;
@@ -23,6 +26,7 @@ nav {
   }
   .navbar-left {
     display: flex;
+
   }
   .navbar-left ul {
     margin-left: 12px;
@@ -39,7 +43,14 @@ nav {
   .navbar-right ul li a:hover {
     border: 1px solid var(--hospital-green);
     color: var(--hospital-green);
+    display: flex;
   }
+
+  .navbar-left ul li:nth-child(2),:nth-child(2),:nth-child(3),:nth-child(4),:nth-child(5){
+    padding: 5px;
+  }
+  
+
   .navbar-email {
     color: var(--very-light-pink);
     font-size: var(--sm);
