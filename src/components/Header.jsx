@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../styles/Header.scss';
 import Shopping from '../asset/icons/icon_shopping_cart.svg';
 import Logo from '../asset/logos/logo_yard_sale.svg';
 import IconMenu from '../asset/icons/icon_menu.svg';
-import Menu from '../components/Menu'
+import Menu from '../components/Menu';
+import AppContext from '../context/AppContext';
+import MyOrder from '../containers/MyOrder';
 
 const Header = () => {
+  const { state } = useContext(AppContext);
+
   const [toggle,setTogle]= useState(false);
-	const handleToggle = ()=>{
-		setTogle(!toggle);
-	}
+  const $toggle = document.getElementById('toggle');
+  const [toggleOrder,setToggleOrder] = useState(false);
+  const $toggleOrder = document.getElementById('toggleOrder');
+  //Function 
+	const handleToggle = (event)=>{
+    if (event.target.value === $toggle.value) {
+      setTogle(!toggle);
+      if (toggleOrder) {
+        setToggleOrder(!toggleOrder);
+      }
+    }if (event.target.value === $toggleOrder.value) {
+      setToggleOrder(!toggleOrder);
+      if (toggle) {
+        setTogle(!toggle);
+      }
+    }
+	};
     return (
     <nav>
     <img src= {IconMenu} alt="menu" className="menu" />
@@ -39,12 +57,13 @@ const Header = () => {
     </div>
     <div className="navbar-right">
       <ul>
-        <li onClick={handleToggle} className="navbar-email">platzi@example.com</li>
-        <li className="navbar-shopping-cart">
-          <img src={Shopping} alt="shopping cart" />
-          <div>2</div>
+        <li onClick={handleToggle} className="navbar-email" id="toggle" value="toggle">troyka@gmail.com</li>
+        <li className="navbar-shopping-cart" onClick={handleToggle}>
+          <img src={Shopping} alt="shopping cart" id="toggleOrder" value="toggleOrder"/>
+          {state.cart.length > 0 ?<div>{state.cart.length}</div>:null}
         </li>
         {toggle && <Menu /> } 
+        {toggleOrder && <MyOrder />}
       </ul>
     </div>
   </nav>
