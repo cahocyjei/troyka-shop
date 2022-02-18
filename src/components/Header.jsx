@@ -1,33 +1,39 @@
 import React, { useState, useContext } from 'react';
 import '../styles/Header.scss';
-import Shopping from '../asset/icons/icon_shopping_cart.svg';
+import IconCart from '../asset/icons/icon_shopping_cart.svg';
 import Logo from '../asset/logos/logo_yard_sale.svg';
 import IconMenu from '../asset/icons/icon_menu.svg';
 import Menu from '../components/Menu';
 import AppContext from '../context/AppContext';
 import MyOrder from '../containers/MyOrder';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const { state } = useContext(AppContext);
+  const [toggleMenu,setTogleMenu]= useState(false);
+  const [toggleMyorder,setToggleMyOrder] = useState(false);
+  
 
-  const [toggle,setTogle]= useState(false);
-  const $toggle = document.getElementById('toggle');
-  const [toggleOrder,setToggleOrder] = useState(false);
-  const $toggleOrder = document.getElementById('toggleOrder');
-  //Function 
-	const handleToggle = (event)=>{
-    if (event.target.value === $toggle.value) {
-      setTogle(!toggle);
-      if (toggleOrder) {
-        setToggleOrder(!toggleOrder);
+  //Functions 
+	const handleMenu = () => {
+    if (state.email.length !== 0) {
+      setTogleMenu(!toggleMenu);
+      if (toggleMyorder) {
+        setToggleMyOrder(!toggleMyorder)
       }
-    }if (event.target.value === $toggleOrder.value) {
-      setToggleOrder(!toggleOrder);
-      if (toggle) {
-        setTogle(!toggle);
+      
+    }
+	}
+
+  const handleMyorder= () => {
+    if (state.email.length !==0) {
+      setToggleMyOrder(!toggleMyorder)
+      if (toggleMenu) {
+        setTogleMenu(!toggleMenu);
       }
     }
-	};
+  }
+
     return (
     <nav>
     <img src= {IconMenu} alt="menu" className="menu" />
@@ -57,13 +63,14 @@ const Header = () => {
     </div>
     <div className="navbar-right">
       <ul>
-        <li onClick={handleToggle} className="navbar-email" id="toggle" value="toggle">troyka@gmail.com</li>
-        <li className="navbar-shopping-cart" onClick={handleToggle}>
-          <img src={Shopping} alt="shopping cart" id="toggleOrder" value="toggleOrder"/>
+        <li className='register'>{state.email.length == 0?'Register':''}</li>
+        <li onClick={handleMenu} className="navbar-email" value="toggle">{state.email.length  !== 0?state.email:<Link to='/login'>Log-in</Link>}</li>
+        <li className="navbar-shopping-cart" onClick={handleMyorder}>
+          <img src={IconCart} alt="shopping cart" id="toggleOrder" value="toggleOrder"/>
           {state.cart.length > 0 ?<div>{state.cart.length}</div>:null}
         </li>
-        {toggle && <Menu /> } 
-        {toggleOrder && <MyOrder />}
+        {toggleMenu && <Menu /> } 
+        {toggleMyorder && <MyOrder />}
       </ul>
     </div>
   </nav>
@@ -71,3 +78,4 @@ const Header = () => {
 }
 
 export default Header;
+
