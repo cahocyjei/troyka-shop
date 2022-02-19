@@ -3,7 +3,8 @@ import {useState} from 'react';
 
 const initialState= {
     cart:[],
-    email:""
+    email:"",
+    toggle:false
 }
 const useInitialState = ()=>{
    const [state, setState] = useState(initialState);
@@ -25,11 +26,18 @@ const useInitialState = ()=>{
             email:Email
        })
    }
+   const toggleOrder = (bolean)=>{
+        setState({
+            ...state,
+            toggle:bolean
+        })
+   }
   return {
       state,
       addTocart,
       removeFromCart,
       logEmail,
+      toggleOrder
   };
 };
 

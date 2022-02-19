@@ -9,7 +9,6 @@ const ProductItem = ({ product }) => {
 	const handleClick = ()=> {
 		if (state.email.length !== 0) {
 			addTocart(product);
-		console.log(state.cart);
 		}
 	};
 

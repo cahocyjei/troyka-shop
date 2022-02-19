@@ -32,6 +32,7 @@ const App = () => {
                         <Route path = "/My-Account" element= {<MyAccount />} />
                         <Route path = "/Checkout" element= {<Checkout />} />
                         <Route path = "/Send-Email" element= {<SendEmail />} />
+                        <Route path = "/create-account" element= {<CreateAccount />} />
                         <Route path= "*" element={<NotFound />} />  
                     </Routes>
                 </Layout>

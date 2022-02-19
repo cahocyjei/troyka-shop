@@ -3,16 +3,13 @@ import OrderItem from '../components/OrderItem';
 import '../styles/MyOrder.scss';
 import AppContext from '../context/AppContext';
 import Flechita from '../asset/icons/flechita.svg'
-
 const MyOrder = () => {
 	const { state,toggleOrder } = useContext(AppContext);
-
 	const sumaTotal = state.cart.reduce((accumulator,currentValue) => {
 		return accumulator + currentValue.price
 	},0);
 	const handleToggleOrder = () =>{
-		toggleOrder(false)
-	
+		toggleOrder(!state.toggle);
 	}
 	return (
 		<aside className="MyOrder">
@@ -38,5 +35,4 @@ const MyOrder = () => {
 		</aside>
 	);
 }
-
 export default MyOrder;
