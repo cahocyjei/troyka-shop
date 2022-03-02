@@ -4,7 +4,11 @@ import {useState} from 'react';
 const initialState= {
     cart:[],
     email:"",
-    toggle:false
+    toggle:false,
+    token:{
+        username:"omar",
+        password:"troyka"
+    }
 }
 const useInitialState = ()=>{
    const [state, setState] = useState(initialState);
