@@ -20,7 +20,7 @@ const App = () => {
     const initialState = useInitialState();
     return (
         <AppContext.Provider value={initialState}>
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <BrowserRouter>
                 <Layout>
                     <Routes>
                         <Route  path = "/" element={<Home />} />
