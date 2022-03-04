@@ -5,7 +5,7 @@ import '../styles/ProductList.scss';
 import useGetProducts from '../hooks/useGetProducts';
 
 
-	const API = 'https://api.escuelajs.co/api/v1/products';
+	const API = 'https://troykamarket.herokuapp.com/troyka/api/products/all';
 const ProductList = () => {
 	const products = useGetProducts(API);
 	return (
