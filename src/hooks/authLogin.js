@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const UseGetUsers = (API,post)=> {
-    const [users,setUsers]= useState([]);
+const AuthLogin = (API,post)=> {
+    const [token,setToken]= useState([]);
        useEffect(async()=>{
         const response = await axios.post(API,post);
-        setUsers(response.data);
+        setToken(response.data);
     },[])
-    return users;
+    return token;
 }
-export default UseGetUsers;
+export { AuthLogin };
