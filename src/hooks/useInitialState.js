@@ -1,14 +1,10 @@
 import {useState} from 'react';
 
-
 const initialState= {
     cart:[],
     email:"",
     toggle:false,
-    token:{
-        username:"omar",
-        password:"troyka"
-    }
+    jwToken: {}
 }
 const useInitialState = ()=>{
    const [state, setState] = useState(initialState);
@@ -36,12 +32,20 @@ const useInitialState = ()=>{
             toggle:bolean
         })
    }
+   const loadToken = (tweb)=>{
+       setState({
+           ...state,
+           jwToken:tweb
+       })
+
+   }
   return {
       state,
       addTocart,
       removeFromCart,
       logEmail,
-      toggleOrder
+      toggleOrder,
+      loadToken
   };
 };
 
