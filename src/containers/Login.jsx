@@ -2,7 +2,7 @@ import React, { useState,useRef, useContext } from 'react';
 import Logo from '../asset/logos/logo_yard_sale.svg';
 import '../styles/Login.scss';
 import AppContex from '../context/AppContext';
-import UseGetUsers from '../hooks/useGetUsers';
+//import UserGetUsers from '../hooks/UserGetUsers';
 import { Link } from 'react-router-dom';
 
 const API = 'https://api.escuelajs.co/api/v1/users';
@@ -11,7 +11,7 @@ const Login = () => {
   const [useUser,setUser] = useState({});
   const { state,logEmail } = useContext(AppContex);
   const form = useRef(null);
-  const users = UseGetUsers(API);
+  const users = UserGetUsers(API);
 
   //Functions
   const userEmail = ()=>{
