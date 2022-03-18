@@ -28,7 +28,6 @@ const ProductList = () => {
 	return (
 		<React.Fragment>
 		<Header />
-<<<<<<< HEAD
 			<section className="main-container">
 				<div className="ProductList">
 				{products.map(product =>(
@@ -38,17 +37,6 @@ const ProductList = () => {
 			</section>
 		</React.Fragment>
 	);
-=======
-		{/*<section className="main-container">
-			<div className="ProductList">
-				{products.length != 0? products.map(product =>(
-					<ProductItem product={product} key = {product.id} />	
-				)):null}
-			</div>
-				</section>*/}
-		</React.Fragment>
-	)
->>>>>>> features
 }
 
 export default ProductList;
