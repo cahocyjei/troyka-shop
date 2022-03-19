@@ -28,14 +28,14 @@ const ProductList = () => {
 	return (
 		<React.Fragment>
 		<Header />
-			<section className="main-container">
+			{/*<section className="main-container">
 				<div className="ProductList">
 				{products.map(product =>(
 					<ProductItem product={product} key = {product.id} />	
 				))}
 				</div>
-			</section>
-		</React.Fragment>
+				</section>*/}
+				</React.Fragment>
 	);
 }
 
