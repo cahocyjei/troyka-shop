@@ -6,6 +6,9 @@ function UselocalStorage(item,initialValue){
     let itemDefault;
 
     if (!itemLocalStorage) {
-        itemDefault = localStorage.setItem(item,initialValue);
+        itemLocalStorage = localStorage.setItem(item,JSON.stringify(initialValue));
+        itemDefault = JSON.parse(itemLocalStorage);
     }
+
+    const {itemState,setItemState} = React.useState(itemDefault);
 }
