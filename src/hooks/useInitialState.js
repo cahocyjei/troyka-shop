@@ -4,7 +4,10 @@ const initialState= {
     cart:[],
     email:"",
     toggle:false,
-    jwToken: {}
+    token:{},
+    loading:true,
+    error:false,
+    products:[],
 }
 const useInitialState = ()=>{
    const [state, setState] = useState(initialState);
@@ -34,18 +37,39 @@ const useInitialState = ()=>{
    }
    const loadToken = (tweb)=>{
        setState({
-           ...state,
-           jwToken:tweb
+        ...state,
+        token:tweb,      
        })
-
    }
+   const loadError = (err)=>{
+       setState({
+           ...state,
+           error:err
+       })
+   }
+   const loadProducts = (payload)=>{
+       setState({
+           ...state,
+           products:payload
+       })
+   }
+   const loadLoading = (st)=>{
+       setState({
+           ...state,
+           loading:st
+       })
+   }
+   
   return {
       state,
       addTocart,
       removeFromCart,
       logEmail,
       toggleOrder,
-      loadToken
+      loadToken,
+      loadError,
+      loadProducts,
+      loadLoading,
   };
 };
 

@@ -10,13 +10,13 @@ import Orders from '../pages/Orders';
 import Checkout from '../pages/Checkout';
 import SendEmail from '../pages/SendEmail';
 import AppContext from '../context/AppContext';
-import useInitialState from '../hooks/useInitialState';
+import UseInitialState from '../hooks/useInitialState';
 import Auth from '../pages/Auth'
 
 import '../styles/global.css';
 
 const App = () => {
-    const initialState = useInitialState();
+    const initialState = UseInitialState();
     return (
         <AppContext.Provider value={initialState}>
         <BrowserRouter>

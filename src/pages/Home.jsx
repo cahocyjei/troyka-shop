@@ -1,10 +1,14 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import ProductList from '../containers/ProductList';
+import AppContext from '../context/AppContext';
+import SpinnerLoad from '../components/Spinner';
 
 const Home = () => {
-
+const { state } = useContext(AppContext);
     return (
-        <ProductList />
+        <React.Fragment>
+          {state.loading?<SpinnerLoad />:<ProductList />}  
+        </React.Fragment> 
     );
 }
 

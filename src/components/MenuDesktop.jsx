@@ -1,4 +1,5 @@
 import React,{useState,useContext} from 'react';
+import { decodeToken,isExpired } from 'react-jwt';
 import '../styles/MenuDesktop.scss';
 import IconCart from '../asset/icons/icon_shopping_cart.svg';
 import Logo from '../asset/logos/logo_yard_sale.svg';
@@ -8,11 +9,11 @@ import AppContext from '../context/AppContext';
 import MyOrder from '../containers/MyOrder';
 import { Link } from 'react-router-dom';
 import MenuMobil from './MenuMobil';
-import CreateAccount from '../pages/CreateAccount';
+import axios from 'axios'
     
+const API = 'https://troykamarket.herokuapp.com/troyka/api/products/all'
     const MenuDesktop = () => {
-
-    const { state,toggleOrder } = useContext(AppContext);
+    const { state,toggleOrder,loadProducts,loadError,loadLoading } = useContext(AppContext);
     const [toggleMenu,setTogleMenu]= useState(false);
     const [toggleMyorder,setToggleMyOrder] = useState(false);
     const [mobil,setMobil] = useState(false);
@@ -39,6 +40,28 @@ import CreateAccount from '../pages/CreateAccount';
     const menuMobil = ()=>{
       setMobil(!mobil);
     }
+    const handledProducts = async()=>{
+      try {if (state.token && isExpired(state.token)) {
+        	await axios.get(API,{headers:{
+					Authorization: `Bearer ${state.token.jwt}`
+				}}).then(response=>{
+					loadProducts(response.data);
+				})
+      }
+			} catch (error) {
+				loadError(error);
+			}
+    }
+    React.useEffect(()=>{
+      if (state.error) {
+        console.log(state.error);
+      }else{
+        console.log(`Decode Token: `+ decodeToken(state.token))
+        console.log(`Validation token: `+ isExpired(state.token))
+      }
+    },[state.error])
+    console.log(`Token: ` + state.token);
+    console.log(`State Loading: ` + state.loading);
     return (
     <nav>
     <img src= {IconMenu} alt="menu" className="menu" onClick={menuMobil}/>
@@ -46,23 +69,23 @@ import CreateAccount from '../pages/CreateAccount';
     <div className="navbar-left">
       <img src= {Logo} alt="logos" className="logo"/>
       <ul>
-        <li>
-          <a href="/">All</a>
+        <li onClick={handledProducts}>
+            All-Products
         </li>
         <li>
-          <a href="/">Clothes</a>
+          Category
         </li>
         <li>
-          <a href="/">Electronics</a>
+          Electronics
         </li>
         <li>
-          <a href="/">Furnitures</a>
+          Furnitures
         </li>
         <li>
-          <a href="/">Toys</a>
+          Toys
         </li>
         <li>
-          <a href="/">Others</a>
+          Others
         </li>
       </ul>
     </div>
