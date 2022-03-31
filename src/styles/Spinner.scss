@@ -1,0 +1,22 @@
+@import 'Vars';
+
+.spinner{
+    width: 36px;
+    height: 36px;
+    border: 5px solid var(--black);
+    border-radius: 50%;
+    border-left-color: var(--very-light-pink);
+    animation: spin 1s ease infinite;
+    position: absolute;
+    margin-top: 25%;
+    margin-left: 50%;
+}
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(360deg);
+    }
+  }
